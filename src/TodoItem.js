@@ -7,6 +7,17 @@ class TodoItem extends Component{
         this.handleClick = this.handleClick.bind(this);
     }
 
+    shouldComponentUpdate(nextProps, nextState){
+        // 这里设置为false，可以避免父组件更新时，子组件也更新；但是这个怎么区分是真的更新还是假更新呢
+        // 原来这个函数接收两个参数，可以通过判断当前参数值和下一个参数值是否相同，来决定组件是否更新
+        // 这样操作提升了性能，避免组件作无意义的虚拟dom比对
+        if(nextProps.content !== this.props.content){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     /**
      * componentWillReceiveProps触发条件：
      * 1. 一个组件从父组件接收参数

@@ -14,6 +14,8 @@ class TodoList extends Component{
         this.handleItemDelete = this.handleItemDelete.bind(this)
     }
 
+    // 在这个钩子函数执行ajax请求，因为它只被执行一次
+    // 为什么不放在render？因为每当数据一更新，render就会被执行，这样就重复执行ajax请求了
     componentWillMount(){
         console.log('component will mount')
     }
