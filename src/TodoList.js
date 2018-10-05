@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import TodoItem from './TodoItem';
 import './TodoList.css'
 class TodoList extends Component{
+
     constructor(props){
         super(props);
         this.state = {
@@ -12,7 +13,13 @@ class TodoList extends Component{
         this.handleBtn = this.handleBtn.bind(this)
         this.handleItemDelete = this.handleItemDelete.bind(this)
     }
+
+    componentWillMount(){
+        console.log('component will mount')
+    }
+
     render(){
+        console.log('parent render')
         return (
             <Fragment>
                 <label htmlFor='input'>请输入内容：</label>
@@ -36,6 +43,34 @@ class TodoList extends Component{
             </Fragment>
         )
     }
+
+    componentDidMount(){
+        console.log('component did mount')
+    }
+
+    // 组件更新之前会自动执行
+    shouldComponentUpdate(){ 
+        console.log('shouldComponentUpdate')
+        return true; // 需要返回布尔值判断组件是否更新
+    }
+
+    // 组件在更新之前，shouldComponentUpdate之后执行
+    // 如果shouldComponentUpdate返回true，则该方法才执行
+    // 如果shouldComponentUpdate返回false，则该方法不执行
+    componentWillUpdate(){
+        console.log('componentWillUpdate')
+    }
+
+    // 组件更新完成之后执行
+    componentDidUpdate(){
+        console.log('componentDidUpdate')
+    }
+
+    // 如果一个组件没有接收props，就不会执行这个函数
+    componentWillReceiveProps(){
+        console.log('componentWillReceiveProps')
+    }
+
     getTodoItem(){
         return this.state.list.map((item, index) => {
             return (
@@ -71,7 +106,7 @@ class TodoList extends Component{
                 inputValue: ''
             }
         },()=>{ // setState第二个参数相当于vue中的nextTick，前一个异步执行完再执行第二个函数
-            console.log(this.ul.querySelectorAll('li').length);
+            console.log(`当前list的条数是：${this.ul.querySelectorAll('li').length}`);
         })
         
     }

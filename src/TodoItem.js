@@ -6,10 +6,29 @@ class TodoItem extends Component{
         super(props);
         this.handleClick = this.handleClick.bind(this);
     }
+
+    /**
+     * componentWillReceiveProps触发条件：
+     * 1. 一个组件从父组件接收参数
+     * 2. 父组件的render函数被重新执行
+     * 如果这个组件是第一次存在于父组件，则不会被执行
+     * 如果这个组件已经存在于父组件，再次渲染时，就会执行
+     * 第一次渲染可以，但是之后再渲染那就需要考虑一下了
+     */
+    componentWillReceiveProps() {
+        console.log('child componentWillReceiveProps')
+    }
+
+    // 当组件即将被销毁时
+    componentWillUnmount(){
+        console.log('child componentWillUnmount')
+    }
+
     handleClick(){
         this.props.deleteItem(this.props.index); // 这个方法需要传递删除项的index，那就从父组件传递过去
     }
     render(){
+        console.log('child render')
         return (
             /**
              * 组件拆分这个部分上，自己犯了一个错误
