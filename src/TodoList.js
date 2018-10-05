@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import TodoItem from './TodoItem';
+import axios from 'axios';
 import './TodoList.css'
 class TodoList extends Component{
 
@@ -17,7 +18,14 @@ class TodoList extends Component{
     // 在这个钩子函数执行ajax请求，因为它只被执行一次
     // 为什么不放在render？因为每当数据一更新，render就会被执行，这样就重复执行ajax请求了
     componentWillMount(){
-        console.log('component will mount')
+        console.log('component will mount');
+        axios.get('/api/todolist/')
+            .then((res)=>{
+                console.log(res)
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
     }
 
     render(){
