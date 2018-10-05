@@ -44,8 +44,8 @@ class TodoItem extends Component{
 
 // 这里的属性检验和默认值设置无效，原因暂时未知
 TodoItem.propTypes = {
-    content: PropTypes.string.isRequired,
-    index: PropTypes.number.isRequired, // 要求它必须传
+    content: PropTypes.string.isRequired, // 要求它必须传
+    index: PropTypes.oneOfType([PropTypes.number,PropTypes.string]), // index类型可以二选一
     deleteItem: PropTypes.func
 }
 
