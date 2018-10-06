@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import TodoItem from './TodoItem';
 import axios from 'axios';
-import './TodoList.css'
 class TodoList extends Component{
 
     constructor(props){
@@ -21,13 +20,17 @@ class TodoList extends Component{
         console.log('component will mount');
         axios.get('http://localhost:3001/api/todolist')
             .then((res)=>{
-                // console.log(res.data);
-                this.setState(() => {
-                    console.log(1)
-                    return {
-                        list: res.data
-                    }
-                })
+                console.log(res.data);
+                // this.setState(() => {
+                //     return {
+                //         list: res.data
+                //     }
+                // });
+                // 以下写法是一个最佳实践，首先箭头函数简洁写法；其次把res.data展开再赋值
+                // 可以避免对res.data数据作了修改，造成不可预知的数据改变的情况
+                this.setState(() => ({
+                    list: [...res.data]
+                }))
             })
             .catch((err)=>{
                 console.log(err)
