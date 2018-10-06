@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Input, Button, List } from 'antd';
 import 'antd/dist/antd.css'
 
-// 无状态组件
+// 无状态组件，它的性能比较高，它就是一个函数，类组件要多执行一些生命周期函数
 const TodoListUI = (props) => {
     return(
         <div style={{ margin: '10px' }}>
@@ -24,7 +24,8 @@ const TodoListUI = (props) => {
                 // onclick触发的只是函数体，并能传递参数
                 renderItem={(item, index) => (<List.Item onClick={() => {
                     props.handleItemDelete(index);
-                }}>{item}</List.Item>)}/>
+                }}>{item}</List.Item>)}
+            />
         </div>
     )
 }

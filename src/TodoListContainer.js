@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import store from './store/index.js'
-import { getInputChangeAction, getAddItemAction, getDeleteItemAction } from './store/actionCreators'
-import TodoListUI from './TodoListUI'
+import store from './store/index.js';
+import { getInputChangeAction, getAddItemAction, getDeleteItemAction, getInitListAction } from './store/actionCreators'
+import TodoListUI from './TodoListUI';
+import axios from 'axios';
 
 class TodoListContainer extends Component {
 
@@ -27,6 +28,19 @@ class TodoListContainer extends Component {
                 />
             </div>
         )
+    }
+
+    // redux结合axios进行数据初始化操作
+    componentDidMount(){
+        axios.get('http://localhost:3001/api/initlist')
+            .then((res)=>{
+                const data = res.data;
+                const action = getInitListAction(data);
+                store.dispatch(action);
+            })
+            .catch((err)=>{
+                console.log(err);
+            })
     }
 
     handleInputChange(e) {
