@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Input, Button, List } from 'antd';
 import 'antd/dist/antd.css'
 import store from './store/index.js'
+import { getInputChangeAction, getAddItemAction, getDeleteItemAction } from './store/actionCreators'
 
 class TodoList extends Component{
 
@@ -52,10 +53,7 @@ class TodoList extends Component{
     handleInputChange(e){
         // 如何让组件上的数据和redux的store连接起来
         // 首先创建一句借书的话，描述要做什么事情
-        const action = {
-            type: 'change_input_value',
-            value: e.target.value
-        };
+        const action = getInputChangeAction(e.target.value);
         // 将这句话告诉图书管理员
         store.dispatch(action);
         // 当reducer处理完数据以后，store的state就更新了
@@ -82,17 +80,12 @@ class TodoList extends Component{
     }
 
     handleButtonClick(){
-        const action = {
-            type: 'add_todo_item',
-        };
+        const action = getAddItemAction();
         store.dispatch(action);
     }
 
     handleItemDelete(index){
-        const action = {
-            type: 'delete_todo_item',
-            index
-        };
+        const action = getDeleteItemAction(index);
         store.dispatch(action);
     }
 }
