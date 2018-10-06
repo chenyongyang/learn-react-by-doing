@@ -3,7 +3,7 @@ import store from './store/index.js'
 import { getInputChangeAction, getAddItemAction, getDeleteItemAction } from './store/actionCreators'
 import TodoListUI from './TodoListUI'
 
-class TodoListRQ extends Component {
+class TodoListContainer extends Component {
 
     constructor(props) {
         super(props);
@@ -20,7 +20,6 @@ class TodoListRQ extends Component {
             <div>
                 <TodoListUI
                     inputValue={this.state.inputValue}
-                    _this={this}
                     list={this.state.list}
                     handleInputChange={this.handleInputChange}
                     handleButtonClick={this.handleButtonClick}
@@ -50,4 +49,4 @@ class TodoListRQ extends Component {
     }
 }
 
-export default TodoListRQ;
+export default TodoListContainer;

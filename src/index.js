@@ -1,4 +1,4 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TodoListRQ from './TodoListRQ';
-ReactDOM.render(<TodoListRQ />, document.getElementById('root'));
+import TodoListContainer from './TodoListContainer';
+ReactDOM.render(<TodoListContainer />, document.getElementById('root'));

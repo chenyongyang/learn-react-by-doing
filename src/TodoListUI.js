@@ -23,7 +23,10 @@ class TodoListUI extends Component{
                     header={<h3>TodoList</h3>}
                     bordered
                     dataSource={this.props.list}
-                    renderItem={(item, index) => (<List.Item onClick={this.props.handleItemDelete.bind(this.props._this, index)}>{item}</List.Item>)}
+                    // onclick触发的只是函数体，并能传递参数
+                    renderItem={(item, index) => (<List.Item onClick={() => {
+                        this.props.handleItemDelete(index);
+                    }}>{item}</List.Item>)}
                 />
             </div>
         )
