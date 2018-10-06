@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import store from './store/index.js';
-import { getInputChangeAction, getAddItemAction, getDeleteItemAction, getInitListAction } from './store/actionCreators'
+import { getInputChangeAction, getAddItemAction, getDeleteItemAction, getTodoList } from './store/actionCreators'
 import TodoListUI from './TodoListUI';
-import axios from 'axios';
+
 
 class TodoListContainer extends Component {
 
@@ -30,17 +30,11 @@ class TodoListContainer extends Component {
         )
     }
 
-    // redux结合axios进行数据初始化操作
     componentDidMount(){
-        axios.get('http://localhost:3001/api/initlist')
-            .then((res)=>{
-                const data = res.data;
-                const action = getInitListAction(data);
-                store.dispatch(action);
-            })
-            .catch((err)=>{
-                console.log(err);
-            })
+        // 这里执行在actionCreator封装的异步函数
+        const action = getTodoList();
+        // 当action是一个函数时，dispatch后会自动执行这个函数
+        store.dispatch(action);
     }
 
     handleInputChange(e) {
