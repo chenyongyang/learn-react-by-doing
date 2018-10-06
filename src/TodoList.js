@@ -19,9 +19,15 @@ class TodoList extends Component{
     // 为什么不放在render？因为每当数据一更新，render就会被执行，这样就重复执行ajax请求了
     componentWillMount(){
         console.log('component will mount');
-        axios.get('/api/todolist/')
+        axios.get('http://localhost:3001/api/todolist')
             .then((res)=>{
-                console.log(res)
+                // console.log(res.data);
+                this.setState(() => {
+                    console.log(1)
+                    return {
+                        list: res.data
+                    }
+                })
             })
             .catch((err)=>{
                 console.log(err)

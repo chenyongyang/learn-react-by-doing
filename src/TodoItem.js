@@ -81,7 +81,7 @@ TodoItem.propTypes = {
 }
 
 TodoItem.defaultProps = { // 默认值只有在父组件没有传递的时候才生效，这里test在父组件上并没有声明
-    test: 'this is the default value'
+    test: '父组件没有传递给我数据，这是默认值'
 }
 
 export default TodoItem;
